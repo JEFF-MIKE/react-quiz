@@ -15,6 +15,11 @@ export type Question = {
   type: string;
 }
 
+export type Categories = {
+  name: string;
+  id: number;
+}
+
 export type QuestionState = Question & { answers: string[] };
 
 export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty): Promise<QuestionState[]> => {
@@ -28,4 +33,12 @@ export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty)
       question.correct_answer
     ])
   }));
+}
+
+export const fetchCategories = async (): Promise<Categories[]> => {
+  const endpoint = `https://opentdb.com/api_category.php`;
+
+  const data = await (await fetch(endpoint)).json();
+
+  return data.trivia_categories;
 }

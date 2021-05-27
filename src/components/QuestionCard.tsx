@@ -11,6 +11,7 @@ type Props = {
   questionNumber: number;
   totalQuestions: number;
 }
+
 const QuestionCard: React.FC<Props> = ({
   question,
   answers,

@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { fetchQuizQuestions } from './API';
+import React, { useState, useEffect } from 'react';
+import { fetchQuizQuestions , fetchCategories } from './API';
 import QuestionCard from './components/QuestionCard';
-import { Difficulty, QuestionState } from './API';
+import { Difficulty, QuestionState, Categories } from './API';
 // Styles
 import { GlobalStyle, Wrapper } from './App.styles';
+import { PassThrough } from 'stream';
 
 export type AnswerObject = {
   question: string;
@@ -21,8 +22,19 @@ const App = () => {
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
+  const [categories, setCategories] = useState<Categories[]>([]);
+  const [selectedCategory, setSelectedCategory] = useState(0);
 
-  console.log(questions);
+  const loadStartMenu = async () => {
+    setLoading(true);
+    const newCategories = await fetchCategories();
+    setCategories(newCategories);
+    setLoading(false);
+  }
+
+  const selectCategory = () => {
+    
+  }
 
   const startQuiz = async () => {
     setLoading(true);
@@ -68,6 +80,13 @@ const App = () => {
       setNumber(nextQuestion);
     }
   }
+
+  useEffect(() => {
+      (async () => {
+      const newCategories = await fetchCategories();
+      setCategories(newCategories);
+    })();
+  }, []);
 
   return (
     <>
