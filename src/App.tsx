@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { fetchQuizQuestions , fetchCategories } from './API';
 import QuestionCard from './components/QuestionCard';
+import StartCard from './components/StartCard';
 import { Difficulty, QuestionState, Categories } from './API';
 // Styles
 import { GlobalStyle, Wrapper } from './App.styles';
@@ -16,14 +17,15 @@ export type AnswerObject = {
 const TOTAL_QUESTIONS = 15;
 const App = () => {
   // states
-  const [loading, setLoading] = useState(false);
+  const [showStartMenu, setShowStartMenu] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
   const [number, setNumber] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [categories, setCategories] = useState<Categories[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState(0);
+  const [selectedCategory, setSelectedCategory] = useState<{value: string;}>({value: '9'});
 
   const loadStartMenu = async () => {
     setLoading(true);
@@ -32,11 +34,13 @@ const App = () => {
     setLoading(false);
   }
 
-  const selectCategory = () => {
-    
+  const selectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log({value: e.target.value});
+    setSelectedCategory({value: e.target.value})
   }
 
-  const startQuiz = async () => {
+  const startQuiz = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    setShowStartMenu(false);
     setLoading(true);
     setGameOver(false);
 
@@ -85,6 +89,7 @@ const App = () => {
       (async () => {
       const newCategories = await fetchCategories();
       setCategories(newCategories);
+      setLoading(false);
     })();
   }, []);
 
@@ -93,13 +98,15 @@ const App = () => {
     <GlobalStyle />
     <Wrapper>
       <h1>QUIZ</h1>
-      {gameOver || userAnswers.length === TOTAL_QUESTIONS ? (
-      <button className="start" onClick={startQuiz}>
-        Start
-      </button> ) : null}
-      {!gameOver ? <p className="score">Score: {score}</p> : null}
+      {gameOver && showStartMenu && !loading &&(<StartCard
+      categories={categories}
+      selectedCategory={selectedCategory}
+      selectCategoryCallback={selectCategory}
+      startQuizCallback={startQuiz}
+      />)}
+      {!gameOver && !showStartMenu ? <p className="score">Score: {score}</p> : null}
       {loading && <p>Loading Questions...</p>}
-      {!loading && !gameOver && (<QuestionCard
+      {!loading && !gameOver && !showStartMenu && (<QuestionCard
         questionNumber={number + 1}
         totalQuestions={TOTAL_QUESTIONS}
         question={questions[number].question}
