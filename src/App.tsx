@@ -5,7 +5,6 @@ import StartCard from './components/StartCard';
 import { Difficulty, QuestionState, Categories } from './API';
 // Styles
 import { GlobalStyle, Wrapper } from './App.styles';
-import { PassThrough } from 'stream';
 
 export type AnswerObject = {
   question: string;
@@ -26,6 +25,7 @@ const App = () => {
   const [gameOver, setGameOver] = useState(true);
   const [categories, setCategories] = useState<Categories[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<{value: string;}>({value: '9'});
+  const [quizDifficulty, setQuizDifficulty] = useState<{value: string;}>({value: 'easy'})
 
   const loadStartMenu = async () => {
     setLoading(true);
@@ -37,6 +37,11 @@ const App = () => {
   const selectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
     console.log({value: e.target.value});
     setSelectedCategory({value: e.target.value})
+  }
+
+  const selectDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log({value: e.target.value});
+    if (e.target.checked) setQuizDifficulty({value: e.target.value});
   }
 
   const startQuiz = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -101,7 +106,9 @@ const App = () => {
       {gameOver && showStartMenu && !loading &&(<StartCard
       categories={categories}
       selectedCategory={selectedCategory}
+      selectedDifficulty={quizDifficulty.value}
       selectCategoryCallback={selectCategory}
+      selectDifficulty={selectDifficulty}
       startQuizCallback={startQuiz}
       />)}
       {!gameOver && !showStartMenu ? <p className="score">Score: {score}</p> : null}
