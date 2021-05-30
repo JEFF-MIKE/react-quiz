@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Categories, CategoryDetails } from '../API';
+import { Categories, fetchCategoryDetails, CategoryDetails } from '../API';
 
 import { StartMenuWrapper } from './StartCard.styles';
 
@@ -22,10 +22,12 @@ const StartCard: React.FC<Props> = ({
   startQuizCallback
 }) => {
   
-  const [categoryDetails, setCategoryDetails] = useState(false);
+  const [categoryDetails, setCategoryDetails] = useState<CategoryDetails | any>({});
 
   const getCategoryDetails = async () => {
+    const newCategoryDetails = await fetchCategoryDetails(selectedCategory.value);
 
+    setCategoryDetails(newCategoryDetails);
   }
 
   return (
@@ -43,10 +45,10 @@ const StartCard: React.FC<Props> = ({
       View category details
     </button>
     <div className="category-details">
-      <p>Total Questions: </p>
-      <p>Easy: </p>
-      <p>Normal: </p>
-      <p>Hard:</p>
+      <p>Total Questions: {categoryDetails?.total_question_count}</p>
+      <p>Easy: {categoryDetails.total_easy_question_count}</p>
+      <p>Normal: {categoryDetails.total_medium_question_count}</p>
+      <p>Hard: {categoryDetails.total_hard_question_count}</p>
     </div>
     <div className="difficulty-selector">
     <strong>Select Category</strong>

@@ -24,7 +24,7 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
   const [categories, setCategories] = useState<Categories[]>([]);
-  const [selectedCategory, setSelectedCategory] = useState<{value: string;}>({value: '9'});
+  const [selectedCategory, setSelectedCategory] = useState<{value: string;}>({value: '1'});
   const [quizDifficulty, setQuizDifficulty] = useState<{value: string;}>({value: 'easy'})
 
   const loadStartMenu = async () => {
