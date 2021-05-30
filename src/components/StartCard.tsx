@@ -31,9 +31,9 @@ const StartCard: React.FC<Props> = ({
   }
 
   return (
-  <div>
+  <StartMenuWrapper>
     <h1>Quiz Setup:</h1>
-    <label htmlFor='categories'>Categories</label>
+    <label htmlFor='categories' className="categories-dropdown-label">Categories</label>
     <select name="category" id="categories" onChange={selectCategoryCallback} value={selectedCategory.value}>
       {
         categories?.map(category => (
@@ -50,8 +50,8 @@ const StartCard: React.FC<Props> = ({
       <p>Normal: {categoryDetails.total_medium_question_count}</p>
       <p>Hard: {categoryDetails.total_hard_question_count}</p>
     </div>
-    <div className="difficulty-selector">
     <strong>Select Category</strong>
+    <div className="difficulty-selector">
       <label>
         <input type="radio" name="difficulty" value="easy" onChange={selectDifficulty} checked={selectedDifficulty === 'easy'}/>Easy
       </label>
@@ -65,7 +65,7 @@ const StartCard: React.FC<Props> = ({
     <button className="start" onClick={startQuizCallback}>
         Start
     </button>
-  </div>
+  </StartMenuWrapper>
 );}
 
 export default StartCard;

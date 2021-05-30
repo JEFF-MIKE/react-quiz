@@ -4,7 +4,7 @@ import QuestionCard from './components/QuestionCard';
 import StartCard from './components/StartCard';
 import { Difficulty, QuestionState, Categories } from './API';
 // Styles
-import { GlobalStyle, Wrapper } from './App.styles';
+import { GlobalStyle, HeaderTag, Wrapper } from './App.styles';
 
 export type AnswerObject = {
   question: string;
@@ -102,7 +102,7 @@ const App = () => {
     <>
     <GlobalStyle />
     <Wrapper>
-      <h1>QUIZ</h1>
+      <HeaderTag>QUIZ</HeaderTag>
       {gameOver && showStartMenu && !loading &&(<StartCard
       categories={categories}
       selectedCategory={selectedCategory}
