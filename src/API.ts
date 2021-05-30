@@ -27,6 +27,13 @@ export type CategoryDetails = {
   total_hard_question_count: number;
 }
 
+export type GlobalCategoryDetails = {
+  total_num_of_questions: number;
+  total_num_of_pending_questions: number;
+  total_num_of_verfied_questions: number;
+  total_num_of_rejected_questions: number;
+}
+
 export type QuestionState = Question & { answers: string[] };
 
 export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty): Promise<QuestionState[]> => {
@@ -57,4 +64,12 @@ export const fetchCategoryDetails = async(category_id: string): Promise<Category
   const data = await(await fetch(endpoint)).json();
 
   return data.category_question_count;
+}
+
+export const fetchGlobalCategoryDetails = async(): Promise<GlobalCategoryDetails> => {
+  const endpoint = `https://opentdb.com/api_count_global.php`;
+
+  const data = await(await fetch(endpoint)).json();
+
+  return data.overall;
 }

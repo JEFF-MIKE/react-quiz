@@ -35,17 +35,20 @@ export const StartMenuWrapper = styled.div`
     border-style: none;
   }
 
-  .category-details {
+  .category-details, .global-category-details {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     background: #833A3F;
     padding: 0 10px;
   }
 
-  .category-details p {
+  .category-details p, .global-category-details p {
     color: #FCE3E5;
     margin-left: 5px;
     font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   }
 
   strong {

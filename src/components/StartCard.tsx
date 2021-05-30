@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-import { Categories, fetchCategoryDetails, CategoryDetails } from '../API';
+import { Categories, fetchCategoryDetails, CategoryDetails, GlobalCategoryDetails, fetchGlobalCategoryDetails } from '../API';
 
 import { StartMenuWrapper } from './StartCard.styles';
 
@@ -23,12 +23,41 @@ const StartCard: React.FC<Props> = ({
 }) => {
   
   const [categoryDetails, setCategoryDetails] = useState<CategoryDetails | any>({});
+  const [globalCategoryDetails, setGlobalCategoryDetails] = useState<GlobalCategoryDetails | any>({});
+  const [loading, setLoading] = useState(false);
+  const [showGlobalDetails, setShowGlobalDetails] = useState(true);
 
   const getCategoryDetails = async () => {
     const newCategoryDetails = await fetchCategoryDetails(selectedCategory.value);
 
     setCategoryDetails(newCategoryDetails);
   }
+
+  const getGlobalCategoryDetails = async () => {
+    const newGlobalCategoryDetails = await fetchGlobalCategoryDetails();
+
+    setGlobalCategoryDetails(newGlobalCategoryDetails);
+  }
+
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      if (selectedCategory.value == "1") {
+        const newGlobalCategoryDetails = await fetchGlobalCategoryDetails();
+
+        setGlobalCategoryDetails(newGlobalCategoryDetails);
+
+        setShowGlobalDetails(true);
+      } else { 
+        const newCategories = await fetchCategoryDetails(selectedCategory.value);
+
+        setCategoryDetails(newCategories);
+
+        setShowGlobalDetails(false);
+      }
+      setLoading(false);
+      })();
+    }, [selectedCategory.value]);
 
   return (
   <StartMenuWrapper>
@@ -41,15 +70,23 @@ const StartCard: React.FC<Props> = ({
         ))
       }
     </select>
-    <button className="category-details-button" onClick={getCategoryDetails}>
-      View category details
-    </button>
+    {!loading && !showGlobalDetails && (
     <div className="category-details">
       <p>Total Questions: {categoryDetails?.total_question_count}</p>
       <p>Easy: {categoryDetails.total_easy_question_count}</p>
       <p>Normal: {categoryDetails.total_medium_question_count}</p>
       <p>Hard: {categoryDetails.total_hard_question_count}</p>
     </div>
+    )}
+    {!loading && showGlobalDetails && (
+      <div className="global-category-details">
+        <p>Total Questions: {globalCategoryDetails.total_num_of_questions}</p>
+        <p>Pending: {globalCategoryDetails.total_num_of_pending_questions}</p>
+        <p>Verified: {globalCategoryDetails.total_num_of_verified_questions}</p>
+        <p>Rejected: {globalCategoryDetails.total_num_of_rejected_questions}</p>
+      </div>
+    )}
+    {loading ? (<p>Loading</p>) : null}
     <strong>Select Category</strong>
     <div className="difficulty-selector">
       <label>
