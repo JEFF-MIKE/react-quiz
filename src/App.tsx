@@ -19,7 +19,8 @@ const App = () => {
   const [showStartMenu, setShowStartMenu] = useState(true);
   const [loading, setLoading] = useState(true);
   const [questions, setQuestions] = useState<QuestionState[]>([]);
-  const [number, setNumber] = useState(0);
+  const [number, setNumber] = useState(10);
+  const [index, setIndex] = useState(0);
   const [userAnswers, setUserAnswers] = useState<AnswerObject[]>([]);
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(true);
@@ -42,6 +43,10 @@ const App = () => {
   const selectDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log({value: e.target.value});
     if (e.target.checked) setQuizDifficulty({value: e.target.value});
+  }
+
+  const selectNumber = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setNumber(Number(e.target.value));
   }
 
   const startQuiz = async (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -107,8 +112,10 @@ const App = () => {
       categories={categories}
       selectedCategory={selectedCategory}
       selectedDifficulty={quizDifficulty.value}
+      number={number}
       selectCategoryCallback={selectCategory}
       selectDifficulty={selectDifficulty}
+      selectNumberCallback={selectNumber}
       startQuizCallback={startQuiz}
       />)}
       {!gameOver && !showStartMenu ? <p className="score">Score: {score}</p> : null}

@@ -8,8 +8,10 @@ type Props = {
   categories: Categories[] | undefined;
   selectedCategory: {value: string};
   selectedDifficulty: string;
+  number: number;
   selectCategoryCallback: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   selectDifficulty: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  selectNumberCallback: (e: React.ChangeEvent<HTMLInputElement>) => void;
   startQuizCallback: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
@@ -17,8 +19,10 @@ const StartCard: React.FC<Props> = ({
   categories,
   selectedCategory,
   selectedDifficulty,
+  number,
   selectCategoryCallback,
   selectDifficulty,
+  selectNumberCallback,
   startQuizCallback
 }) => {
   
@@ -66,7 +70,12 @@ const StartCard: React.FC<Props> = ({
     <select name="category" id="categories" onChange={selectCategoryCallback} value={selectedCategory.value}>
       {
         categories?.map(category => (
-          <option key={category.id} value={category.id}>{category.name}</option>
+          <option 
+            key={category.id} 
+            value={category.id}
+            className={"category-item " + (category.id === Number(selectedCategory.value) ? "selected-category-item" : "")}>
+              {category.name}
+          </option>
         ))
       }
     </select>
@@ -86,7 +95,11 @@ const StartCard: React.FC<Props> = ({
         <p>Rejected: {globalCategoryDetails.total_num_of_rejected_questions}</p>
       </div>
     )}
-    {loading ? (<p>Loading</p>) : null}
+    {loading ? (
+      <div className="loading-panel">
+        <p>Loading</p>
+      </div>
+    ) : null}
     <strong>Select Category</strong>
     <div className="difficulty-selector">
       <label>
@@ -99,6 +112,8 @@ const StartCard: React.FC<Props> = ({
         <input type="radio" name="difficulty" value="hard" onChange={selectDifficulty} checked={selectedDifficulty === 'hard'}/>Hard
       </label>
     </div>
+    <label htmlFor="question-quantity" className="question-quantity-label">Amount of questions (10-50):</label>
+    <input type="number" id="question-quantity" name="question-quantity" min="10" max="50" value={number} onChange={selectNumberCallback}/>
     <button className="start" onClick={startQuizCallback}>
         Start
     </button>

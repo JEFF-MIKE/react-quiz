@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StartMenuWrapper = styled.div`
   max-width: 1100px;
   background: #a6494f;
-  padding: 10px 50px;
+  padding: 0 50px;
   font-family: 'Work Sans', sans-serif;
   display: flex;
   flex-direction: column;
@@ -16,11 +16,12 @@ export const StartMenuWrapper = styled.div`
     margin: 10px 0;
   }
 
-  .categories-dropdown-label {
+  .categories-dropdown-label, .question-quantity-label {
     color: #FFFFFF;
+    margin: 4px 0;
   }
 
-  #categories {
+  #categories, #question-quantity {
     padding-left: 3px;
     padding-top: 4px;
     padding-bottom: 4px;
@@ -35,25 +36,37 @@ export const StartMenuWrapper = styled.div`
     border-style: none;
   }
 
-  .category-details, .global-category-details {
+  .category-details, .global-category-details, .loading-panel {
     display: flex;
+    height: 180px;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
     background: #833A3F;
     padding: 0 10px;
   }
 
-  .category-details p, .global-category-details p {
+  .selected-category-item {
+    background-color: #00FF00;
+  }
+
+  .category-details p, .global-category-details p, .loading-panel p {
     color: #FCE3E5;
     margin-left: 5px;
     font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .loading-panel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   strong {
     color: #FFFFFF;
     padding: 3px 0;
+    margin: 4px 0;
   }
 
   .difficulty-selector {
@@ -65,6 +78,10 @@ export const StartMenuWrapper = styled.div`
 
   .start {
     margin-top: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
+  }
+
+  .start:hover {
+    background: #4b2426;
   }
 `;

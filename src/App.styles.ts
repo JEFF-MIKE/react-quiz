@@ -56,5 +56,5 @@ export const HeaderTag = styled.h1`
   text-align: center;
   display: block;
   margin: 0;
-  padding: 8px 0;
+  padding: 5px 0;
 `
