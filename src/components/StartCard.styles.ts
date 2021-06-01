@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const StartMenuWrapper = styled.div`
-  max-width: 1100px;
+  max-width: 1000px;
   background: #a6494f;
-  padding: 0 50px;
+  padding: 0 40px;
   font-family: 'Work Sans', sans-serif;
-  display: flex;
+  display: inline-flex;
   flex-direction: column;
+  justify-content: center;
 
 
   h1 {
@@ -14,6 +15,7 @@ export const StartMenuWrapper = styled.div`
     color: #FFFFFF;
     text-align: center;
     margin: 10px 0;
+    width: 100%;
   }
 
   .categories-dropdown-label, .question-quantity-label {

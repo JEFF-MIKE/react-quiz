@@ -98,10 +98,6 @@ const App = () => {
     }
   }
 
-  const finishQuiz = () => {
-    // sets teh ga
-  }
-
   useEffect(() => {
       (async () => {
       const newCategories = await fetchCategories();

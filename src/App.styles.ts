@@ -14,6 +14,7 @@ export const GlobalStyle = createGlobalStyle`
     padding; 0 20px;
     display: flex;
     justify-content: center;
+    max-width: 1150px;
   }
 
   * {
@@ -25,6 +26,7 @@ export const GlobalStyle = createGlobalStyle`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  max-width: 1150px;
 
   > p {
     color: #fff;
@@ -48,6 +50,7 @@ export const Wrapper = styled.div`
 `
 
 export const HeaderTag = styled.h1`
+  width: 100%;
   font-family: 'Barlow Semi Condensed', sans-serif;
   background: linear-gradient(to right, rgba(52, 36, 48, 0.74) 0%, rgba(52, 36, 48, 0.78) 30%, rgba(52, 36, 48, 0.82) 46%, rgba(52, 36, 48, 0.92) 69%, rgba(52, 36, 48, 0.97) 100%);
   color: #FFFFFF;
