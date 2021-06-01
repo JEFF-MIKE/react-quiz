@@ -36,9 +36,8 @@ export type GlobalCategoryDetails = {
 
 export type QuestionState = Question & { answers: string[] };
 
-export const fetchQuizQuestions = async (amount: number, difficulty: Difficulty): Promise<QuestionState[]> => {
-  const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple`;
-
+export const fetchQuizQuestions = async (amount: number, difficulty: string, category: string): Promise<QuestionState[]> => {
+  const endpoint = `https://opentdb.com/api.php?amount=${amount}&difficulty=${difficulty}&type=multiple${category !== "1" ? `&category=${category}`: ``}`;
   const data = await (await fetch(endpoint)).json();
   return data.results.map((question: Question) => ({
     ...question,

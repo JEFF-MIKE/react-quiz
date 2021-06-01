@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchQuizQuestions , fetchCategories } from './API';
 import QuestionCard from './components/QuestionCard';
 import StartCard from './components/StartCard';
+import GameOverPanel from './components/GameOverPanel';
 import { Difficulty, QuestionState, Categories } from './API';
 // Styles
 import { GlobalStyle, HeaderTag, Wrapper } from './App.styles';
@@ -32,6 +33,7 @@ const App = () => {
     setLoading(true);
     const newCategories = await fetchCategories();
     setCategories(newCategories);
+    setShowStartMenu(true);
     setLoading(false);
   }
 
@@ -55,14 +57,15 @@ const App = () => {
     setGameOver(false);
 
     const newQuestions = await fetchQuizQuestions(
-      TOTAL_QUESTIONS,
-      Difficulty.EASY
+      number,
+      quizDifficulty.value,
+      selectedCategory.value
     );
     console.log("New Questions, " + newQuestions);
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
-    setNumber(0);
+    setIndex(0);
     setLoading(false);
   }
 
@@ -71,15 +74,15 @@ const App = () => {
       // Users answer
       const answer = e.currentTarget.value;
       // Check answer against correct value / correct answer
-      const correct = questions[number].correct_answer === answer;
+      const correct = questions[index].correct_answer === answer;
 
       if (correct) setScore(prev => prev + 1);
       // Save answer in the array for user answers
       const answerObject = {
-        question: questions[number].question,
+        question: questions[index].question,
         answer,
         correct,
-        correctAnswer: questions[number].correct_answer
+        correctAnswer: questions[index].correct_answer
       };
       setUserAnswers(prev => [...prev, answerObject]);
     }
@@ -87,12 +90,16 @@ const App = () => {
 
   const nextQuestion = () => {
     // Move onto the next question
-    const nextQuestion = number + 1;
-    if (nextQuestion === TOTAL_QUESTIONS) {
+    const nextQuestion = index + 1;
+    if (nextQuestion === number) {
       setGameOver(true);
     } else {
-      setNumber(nextQuestion);
+      setIndex(nextQuestion);
     }
+  }
+
+  const finishQuiz = () => {
+    // sets teh ga
   }
 
   useEffect(() => {
@@ -121,20 +128,35 @@ const App = () => {
       {!gameOver && !showStartMenu ? <p className="score">Score: {score}</p> : null}
       {loading && <p>Loading Questions...</p>}
       {!loading && !gameOver && !showStartMenu && (<QuestionCard
-        questionNumber={number + 1}
-        totalQuestions={TOTAL_QUESTIONS}
-        question={questions[number].question}
-        answers={questions[number].answers}
-        userAnswer={userAnswers ? userAnswers[number]: undefined}
+        questionNumber={index + 1}
+        totalQuestions={number}
+        question={questions[index].question}
+        answers={questions[index].answers}
+        userAnswer={userAnswers ? userAnswers[index]: undefined}
         callback={checkAnswers}
       />)}
       {!gameOver && 
        !loading && 
-       userAnswers.length === number + 1 && 
-      number !== TOTAL_QUESTIONS - 1 ? 
+       userAnswers.length === index + 1 && 
+      index !==  number - 1 ? 
       (<button className="next" onClick={nextQuestion}>
         Next Question
       </button>) : null}
+      {!gameOver &&
+      !loading &&
+      index === number - 1 ? (
+        <button className="finish" onClick={nextQuestion}>
+          Finish
+        </button>
+      ) : 
+    null}
+    {gameOver &&
+    !loading &&
+    !showStartMenu? (
+      <GameOverPanel
+        score={score}
+        loadStartCallback={loadStartMenu}/>
+    ) : null}
     </Wrapper>
     </>
   );
