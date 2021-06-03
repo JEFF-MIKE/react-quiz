@@ -121,11 +121,11 @@ const App = () => {
       selectNumberCallback={selectNumber}
       startQuizCallback={startQuiz}
       />)}
-      {!gameOver && !showStartMenu ? <p className="score">Score: {score}</p> : null}
       {loading && <p>Loading Questions...</p>}
       {!loading && !gameOver && !showStartMenu && (<QuestionCard
         questionNumber={index + 1}
         totalQuestions={number}
+        score={score}
         question={questions[index].question}
         answers={questions[index].answers}
         userAnswer={userAnswers ? userAnswers[index]: undefined}
