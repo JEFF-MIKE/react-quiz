@@ -1,13 +1,22 @@
 import styled from 'styled-components';
 
 export const StartMenuWrapper = styled.div`
-  max-width: 1000px;
+  flex: 1;
+  display: flex;
+  max-width: 900px;
+  max-height: 600px;
   background: #a6494f;
-  padding: 0 40px;
-  font-family: 'Work Sans', sans-serif;
-  display: inline-flex;
-  flex-direction: column;
   justify-content: center;
+  font-family: 'Work Sans', sans-serif;
+
+  .inner-div {
+    width: 100%;
+    background: #a6494f;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 10%;
+  }
 
 
   h1 {
@@ -21,6 +30,7 @@ export const StartMenuWrapper = styled.div`
   .categories-dropdown-label, .question-quantity-label {
     color: #FFFFFF;
     margin: 4px 0;
+    flex: 1;
   }
 
   #categories, #question-quantity {

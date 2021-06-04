@@ -2,6 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import BGImage from './images/space_night_sky.jpg';
 
+/*
 export const GlobalStyle = createGlobalStyle`
   html {
     height: 100%;
@@ -14,7 +15,8 @@ export const GlobalStyle = createGlobalStyle`
     padding; 0 20px;
     display: flex;
     justify-content: center;
-    max-width: 1150px;
+    align-items: center;
+    width: 100%;
   }
 
   * {
@@ -22,11 +24,31 @@ export const GlobalStyle = createGlobalStyle`
     font-family: 'Raleway', sans-serif;
   }
 `
+*/
+export const GlobalStyle = createGlobalStyle`
+  html, body {
+    width: 100%;
+    height: 100%;
+  }
 
-export const Wrapper = styled.div`
+  body > #root{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: "header header header"
+                         ". main ."
+                         "footer footer footer";
+    grid-template-rows: 150px auto 100px;
+    grid-template-columns: 10% 80% 10%;
+    background-color: orange;
+  }
+`
+export const Wrapper = styled.main`
+  grid-area: main;
+  background-color: green;
   display: flex;
-  flex-direction: column;
-  max-width: 1150px;
+  justify-content: center;
+  align-items: center;
 
   > p {
     color: #fff;
@@ -49,15 +71,27 @@ export const Wrapper = styled.div`
   }
 `
 
-export const HeaderTag = styled.h1`
-  width: 100%;
-  font-family: 'Barlow Semi Condensed', sans-serif;
+export const HeaderTag = styled.header`
+  grid-area: header;
   background: linear-gradient(to right, rgba(52, 36, 48, 0.74) 0%, rgba(52, 36, 48, 0.78) 30%, rgba(52, 36, 48, 0.82) 46%, rgba(52, 36, 48, 0.92) 69%, rgba(52, 36, 48, 0.97) 100%);
-  color: #FFFFFF;
-  font-size: 70px;
-  font-weight: 400;
-  text-align: center;
-  display: block;
-  margin: 0;
-  padding: 5px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  h1 {
+    flex: 1;
+    font-size: 70px;
+    font-weight: 400;
+    text-align: center;
+    display: block;
+    margin: 0;
+    padding: 5px 0;
+    color: #FFFFFF;
+    font-family: 'Barlow Semi Condensed', sans-serif;
+  }
+`
+
+export const FooterTag = styled.footer`
+  grid-area: footer;
+  background-color: black;
 `

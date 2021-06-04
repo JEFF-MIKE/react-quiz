@@ -5,7 +5,7 @@ import StartCard from './components/StartCard';
 import GameOverPanel from './components/GameOverPanel';
 import { Difficulty, QuestionState, Categories } from './API';
 // Styles
-import { GlobalStyle, HeaderTag, Wrapper } from './App.styles';
+import { GlobalStyle, HeaderTag, Wrapper, FooterTag } from './App.styles';
 
 export type AnswerObject = {
   question: string;
@@ -109,8 +109,10 @@ const App = () => {
   return (
     <>
     <GlobalStyle />
+    <HeaderTag>
+      <h1>QUIZ</h1>
+    </HeaderTag>
     <Wrapper>
-      <HeaderTag>QUIZ</HeaderTag>
       {gameOver && showStartMenu && !loading &&(<StartCard
       categories={categories}
       selectedCategory={selectedCategory}
@@ -154,6 +156,9 @@ const App = () => {
         loadStartCallback={loadStartMenu}/>
     ) : null}
     </Wrapper>
+    <FooterTag>
+      <small>Sample Text</small>
+    </FooterTag>
     </>
   );
 }

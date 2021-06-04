@@ -65,6 +65,7 @@ const StartCard: React.FC<Props> = ({
 
   return (
   <StartMenuWrapper>
+    <div className="inner-div">
     <h1>Quiz Setup:</h1>
     <label htmlFor='categories' className="categories-dropdown-label">Categories</label>
     <select name="category" id="categories" onChange={selectCategoryCallback} value={selectedCategory.value}>
@@ -117,6 +118,7 @@ const StartCard: React.FC<Props> = ({
     <button className="start" onClick={startQuizCallback}>
         Start
     </button>
+    </div>
   </StartMenuWrapper>
 );}
 
