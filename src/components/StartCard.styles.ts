@@ -1,17 +1,16 @@
 import styled from 'styled-components';
-
+import { colors } from '../colors';
 export const StartMenuWrapper = styled.div`
   flex: 1;
   display: flex;
   max-width: 900px;
   max-height: 600px;
-  background: #a6494f;
   justify-content: center;
   font-family: 'Work Sans', sans-serif;
 
   .inner-div {
     width: 100%;
-    background: #a6494f;
+    background: ${colors.main_color};
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -21,14 +20,14 @@ export const StartMenuWrapper = styled.div`
 
   h1 {
     font-family: 'Neuton', serif;
-    color: #FFFFFF;
+    color: ${colors.primary_text_color};
     text-align: center;
     margin: 10px 0;
     width: 100%;
   }
 
   .categories-dropdown-label, .question-quantity-label {
-    color: #FFFFFF;
+    color: ${colors.primary_text_color};
     margin: 4px 0;
     flex: 1;
   }
@@ -41,8 +40,8 @@ export const StartMenuWrapper = styled.div`
   }
 
   .category-details-button, .start {
-    background: #5c3032;
-    color: #FFFFFF;
+    background: ${colors.button_primary_color};
+    color: ${colors.primary_text_color};
     font-family: 'Work Sans', serif;
     padding: 10px 5px;
     border-style: none;
@@ -53,7 +52,7 @@ export const StartMenuWrapper = styled.div`
     height: 180px;
     flex-direction: column;
     justify-content: space-evenly;
-    background: #833A3F;
+    background: ${colors.secondary_color};
     padding: 0 10px;
   }
 
@@ -62,7 +61,7 @@ export const StartMenuWrapper = styled.div`
   }
 
   .category-details p, .global-category-details p, .loading-panel p {
-    color: #FCE3E5;
+    color: ${colors.secondary_text_color};
     margin-left: 5px;
     font-size: 16px;
     margin-top: 5px;
@@ -76,7 +75,7 @@ export const StartMenuWrapper = styled.div`
   }
 
   strong {
-    color: #FFFFFF;
+    color: ${colors.primary_text_color};
     padding: 3px 0;
     margin: 4px 0;
   }
@@ -85,7 +84,7 @@ export const StartMenuWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 3px 0;
-    color: #FCE3E5;
+    color: ${colors.secondary_text_color};
   }
 
   .start {
@@ -94,6 +93,6 @@ export const StartMenuWrapper = styled.div`
   }
 
   .start:hover {
-    background: #4b2426;
+    background: ${colors.button_secondary_color};
   }
 `;
