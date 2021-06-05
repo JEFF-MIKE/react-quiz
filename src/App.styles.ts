@@ -1,6 +1,6 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
-import BGImage from './images/space_night_sky.jpg';
+import BGImage from './images/kingfisher.jpg';
 
 /*
 export const GlobalStyle = createGlobalStyle`
@@ -31,6 +31,12 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
   }
 
+  body {
+    margin: 0;
+    background-image: url(${BGImage});
+    background-size: cover;
+  }
+
   body > #root{
     width: 100%;
     height: 100%;
@@ -38,14 +44,13 @@ export const GlobalStyle = createGlobalStyle`
     grid-template-areas: "header header header"
                          ". main ."
                          "footer footer footer";
-    grid-template-rows: 150px auto 100px;
-    grid-template-columns: 10% 80% 10%;
-    background-color: orange;
+    grid-template-rows: 12.5% 75% 12.5%;
+    grid-template-columns: 5% 90% 5%;
   }
 `
 export const Wrapper = styled.main`
   grid-area: main;
-  background-color: green;
+  // background-color: green;
   display: flex;
   justify-content: center;
   align-items: center;

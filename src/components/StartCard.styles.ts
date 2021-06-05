@@ -5,8 +5,10 @@ export const StartMenuWrapper = styled.div`
   display: flex;
   max-width: 900px;
   max-height: 600px;
+  min-height: 570px;
   justify-content: center;
   font-family: 'Work Sans', sans-serif;
+  border: 5px solid black;
 
   .inner-div {
     width: 100%;
@@ -14,29 +16,40 @@ export const StartMenuWrapper = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 10%;
+    padding: 25px 10%;
   }
 
 
   h1 {
     font-family: 'Neuton', serif;
-    color: ${colors.primary_text_color};
+    color: ${colors.heading_text_color};
     text-align: center;
-    margin: 10px 0;
+    vertical-align: middle;
     width: 100%;
+    border-bottom: 3px solid black;
+    border-top: 3px solid black;
+    padding: 8px 0;
+    margin: 5px 0;
   }
 
   .categories-dropdown-label, .question-quantity-label {
     color: ${colors.primary_text_color};
     margin: 4px 0;
+    font-size: 20px;
     flex: 1;
   }
 
   #categories, #question-quantity {
+    background-color: ${colors.dropdown_selector_color};
     padding-left: 3px;
     padding-top: 4px;
     padding-bottom: 4px;
     margin-top: 4px;
+    border: 3px solid black;
+  }
+
+  #categories {
+    border-bottom: none;
   }
 
   .category-details-button, .start {
@@ -54,6 +67,7 @@ export const StartMenuWrapper = styled.div`
     justify-content: space-evenly;
     background: ${colors.secondary_color};
     padding: 0 10px;
+    border: 3px solid black;
   }
 
   .selected-category-item {
@@ -76,20 +90,22 @@ export const StartMenuWrapper = styled.div`
 
   strong {
     color: ${colors.primary_text_color};
+    font-size: 20px;
     padding: 3px 0;
     margin: 4px 0;
   }
 
   .difficulty-selector {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     margin: 3px 0;
-    color: ${colors.secondary_text_color};
+    color: ${colors.primary_text_color};
   }
 
   .start {
     margin-top: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    color: ${colors.button_text_color}
   }
 
   .start:hover {
