@@ -90,11 +90,11 @@ const App = () => {
 
   const nextQuestion = () => {
     // Move onto the next question
-    const nextQuestion = index + 1;
-    if (nextQuestion === number) {
+    const nextQuestionNumber = index + 1;
+    if (nextQuestionNumber === number) {
       setGameOver(true);
     } else {
-      setIndex(nextQuestion);
+      setIndex(nextQuestionNumber);
     }
   }
 
@@ -132,22 +132,8 @@ const App = () => {
         answers={questions[index].answers}
         userAnswer={userAnswers ? userAnswers[index]: undefined}
         callback={checkAnswers}
+        nextQuestionCallback={nextQuestion}
       />)}
-      {!gameOver && 
-       !loading && 
-       userAnswers.length === index + 1 && 
-      index !==  number - 1 ? 
-      (<button className="next" onClick={nextQuestion}>
-        Next Question
-      </button>) : null}
-      {!gameOver &&
-      !loading &&
-      index === number - 1 ? (
-        <button className="finish" onClick={nextQuestion}>
-          Finish
-        </button>
-      ) : 
-    null}
     {gameOver &&
     !loading &&
     !showStartMenu? (

@@ -1,9 +1,31 @@
 import styled from 'styled-components';
 
+import { colors } from '../colors';
+
 export const Wrapper = styled.div`
-  max-width: 1100px;
-  background: #a6494f;
-  padding: 20px;
+flex: 1;
+display: flex;
+max-width: 900px;
+max-height: 600px;
+min-height: 570px;
+justify-content: center;
+font-family: 'Work Sans', sans-serif;
+border: 5px solid black;
+
+.inner-div {
+  width: 100%;
+  background: ${colors.main_color};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 25px 10%;
+}
+
+  h1 {
+    color: #FFFFFF;
+    padding: 3px 0;
+    border-bottom: 3px solid black;
+  }
 
   p {
     font-size: 1rem;
@@ -15,10 +37,19 @@ type ButtonWrapperProps = {
   userClicked: boolean;
 }
 
+export const BottomButtonWrapper = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
+
+// #666362 = ash black.
 export const ButtonWrapper = styled.div<ButtonWrapperProps>`
 
   button:hover {
-    background: #4b2426;
+    background:
   }
 
   button {
@@ -29,13 +60,12 @@ export const ButtonWrapper = styled.div<ButtonWrapperProps>`
     width: 100%;
     height: 40px;
     margin: 5px 0;
-    background: ${({ correct, userClicked }) =>
-      correct 
-        ? 'linear-gradient(90deg, #56ffa4, #59bc86)'
+    background-color: ${({ correct, userClicked }) =>
+    correct 
+        ? 'green'
         : !correct && userClicked
-        ? 'linear-gradient(90deg, #ff5656, #c16868)'
-        : 'linear-gradient(90deg, #56ccff, #6eafb4)'};
-      background: #5c3032;
+        ? 'red'
+        : colors.button_primary_color};
       color: #FFFFFF;
       font-family: 'Work Sans', serif;
       padding: 10px 5px;

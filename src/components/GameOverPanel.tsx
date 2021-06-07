@@ -12,12 +12,14 @@ const GameOverPanel: React.FC<Props> = ({
   loadStartCallback
 }) => (
   <GameOverWrapper>
+    <div className="inner-div">
     <p>Final score: {score}</p>
     <button 
       className="load-start-panel"
       onClick={loadStartCallback}>
       Back to Quiz Settings
     </button>
+    </div>
   </GameOverWrapper>
 );
 
