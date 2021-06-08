@@ -2,6 +2,8 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import BGImage from './images/kingfisher.jpg';
 
+import { colors } from './colors';
+
 /*
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -37,7 +39,7 @@ export const GlobalStyle = createGlobalStyle`
     background-size: cover;
   }
 
-  body > #root{
+  body > #root {
     width: 100%;
     height: 100%;
     display: grid;
@@ -47,6 +49,18 @@ export const GlobalStyle = createGlobalStyle`
     grid-template-rows: 12.5% 75% 12.5%;
     grid-template-columns: 5% 90% 5%;
   }
+
+  @media screen and (max-height: 767px) {
+    body > #root {
+      grid-template-areas: "header"
+                           "main"
+                           "footer";
+    grid-template-rows: 10% 80% 10%;
+    grid-template-columns: 100%;
+    }
+  }
+
+  @media screen and (max-height: 499px)
 `
 export const Wrapper = styled.main`
   grid-area: main;
@@ -74,6 +88,10 @@ export const Wrapper = styled.main`
     margin: 20px 0;
     padding: 0 40px;
   }
+
+  @media screen and (max-height: 500px){
+    
+  }
 `
 
 export const HeaderTag = styled.header`
@@ -94,9 +112,23 @@ export const HeaderTag = styled.header`
     color: #FFFFFF;
     font-family: 'Barlow Semi Condensed', sans-serif;
   }
+
+  @media screen and (max-height: 760px) {
+    h1 {
+      font-size: 35px;
+      padding: 0;
+    }
+  }
 `
 
 export const FooterTag = styled.footer`
   grid-area: footer;
   background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  small {
+    color: #FFFFFF;
+  }
 `

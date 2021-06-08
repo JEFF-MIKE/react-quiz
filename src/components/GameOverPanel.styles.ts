@@ -5,8 +5,8 @@ export const GameOverWrapper = styled.div`
 flex: 1;
 display: flex;
 max-width: 900px;
-max-height: 600px;
-min-height: 570px;
+min-height: 400px;
+max-height: 500px;
 justify-content: center;
 font-family: 'Work Sans', sans-serif;
 border: 5px solid black;
@@ -16,8 +16,15 @@ border: 5px solid black;
   background: ${colors.main_color};
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   padding: 25px 10%;
+}
+
+p {
+}
+
+button {
+
 }
   background: #a6494f;
   color: #FFFFFF;

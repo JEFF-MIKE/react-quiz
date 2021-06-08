@@ -4,7 +4,6 @@ export const StartMenuWrapper = styled.div`
   flex: 1;
   display: flex;
   max-width: 900px;
-  max-height: 600px;
   min-height: 570px;
   justify-content: center;
   font-family: 'Work Sans', sans-serif;
@@ -97,7 +96,7 @@ export const StartMenuWrapper = styled.div`
 
   .difficulty-selector {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin: 3px 0;
     color: ${colors.primary_text_color};
   }
@@ -110,5 +109,40 @@ export const StartMenuWrapper = styled.div`
 
   .start:hover {
     background: ${colors.button_secondary_color};
+  }
+
+  @media screen and (max-height: 767px) {
+    min-height: 300px;
+
+    .inner-div {
+      padding: 20px 8%;
+    }
+
+    h1 {
+      font-size: 20px;
+      padding: 4px 0;
+    }
+
+    .categories-dropdown-label {
+      font-size: 16px;
+    }
+
+    #categories, strong, .question-quantity-label {
+      font-size: 16px;
+    }
+
+    .category-details, .global-category-details, .loading-panel {
+      height: 120px;
+    }
+
+    .category-details p, .global-category-details p, loading-panel p {
+      font-size: 12px;
+      margin: 3px 0;
+      margin-left: 5px;
+    }
+
+    .difficulty-selector label {
+      font-size: 12px;
+    }
   }
 `;
