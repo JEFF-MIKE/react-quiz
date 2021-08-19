@@ -2,7 +2,7 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 import BGImage from './images/kingfisher.jpg';
 
-import { colors } from './colors';
+// import { colors } from './colors';
 
 /*
 export const GlobalStyle = createGlobalStyle`
@@ -49,8 +49,7 @@ export const GlobalStyle = createGlobalStyle`
     grid-template-rows: 12.5% 75% 12.5%;
     grid-template-columns: 5% 90% 5%;
   }
-
-  @media screen and (max-height: 767px) {
+@media screen and (max-height: 767px), (max-width: 500px) {
     body > #root {
       grid-template-areas: "header"
                            "main"

@@ -31,22 +31,22 @@ const StartCard: React.FC<Props> = ({
   const [loading, setLoading] = useState(false);
   const [showGlobalDetails, setShowGlobalDetails] = useState(true);
 
-  const getCategoryDetails = async () => {
-    const newCategoryDetails = await fetchCategoryDetails(selectedCategory.value);
+  // const getCategoryDetails = async () => {
+  //   const newCategoryDetails = await fetchCategoryDetails(selectedCategory.value);
 
-    setCategoryDetails(newCategoryDetails);
-  }
+  //   setCategoryDetails(newCategoryDetails);
+  // }
 
-  const getGlobalCategoryDetails = async () => {
-    const newGlobalCategoryDetails = await fetchGlobalCategoryDetails();
+  // const getGlobalCategoryDetails = async () => {
+  //   const newGlobalCategoryDetails = await fetchGlobalCategoryDetails();
 
-    setGlobalCategoryDetails(newGlobalCategoryDetails);
-  }
+  //   setGlobalCategoryDetails(newGlobalCategoryDetails);
+  // }
 
   useEffect(() => {
     (async () => {
       setLoading(true);
-      if (selectedCategory.value == "1") {
+      if (selectedCategory.value === "1") {
         const newGlobalCategoryDetails = await fetchGlobalCategoryDetails();
 
         setGlobalCategoryDetails(newGlobalCategoryDetails);

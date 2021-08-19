@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { fetchQuizQuestions , fetchCategories } from './API';
+import { fetchQuizQuestions , fetchCategories, QuestionState, Categories  } from './API';
 import QuestionCard from './components/QuestionCard';
 import StartCard from './components/StartCard';
 import GameOverPanel from './components/GameOverPanel';
-import { Difficulty, QuestionState, Categories } from './API';
 // Styles
 import { GlobalStyle, HeaderTag, Wrapper, FooterTag } from './App.styles';
 
@@ -14,7 +13,6 @@ export type AnswerObject = {
   correctAnswer: string;
 }
 
-const TOTAL_QUESTIONS = 15;
 const App = () => {
   // states
   const [showStartMenu, setShowStartMenu] = useState(true);
