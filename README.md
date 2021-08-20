@@ -1,8 +1,13 @@
-# Getting Started with Create React App
+# React Quiz
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+My first React project, this application quizzes you based on questions from the OpenTriviaDB api.
 
-## Available Scripts
+You can select the difficulty, category and amount of questions you want to be quizzed on.
+
+You can view the project online [here](https://quiz.mikejeffprojects.xyz/)
+
+
+# Generic React Bollox below  for local usage blah blah blah blah
 
 In the project directory, you can run:
 
