@@ -26,6 +26,7 @@ const App = () => {
   const [categories, setCategories] = useState<Categories[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<{value: string;}>({value: '1'});
   const [quizDifficulty, setQuizDifficulty] = useState<{value: string;}>({value: 'easy'})
+  const [errorMessage, setErrorMessage] = useState("");
 
   const loadStartMenu = async () => {
     setLoading(true);
@@ -36,12 +37,10 @@ const App = () => {
   }
 
   const selectCategory = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    console.log({value: e.target.value});
     setSelectedCategory({value: e.target.value})
   }
 
   const selectDifficulty = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log({value: e.target.value});
     if (e.target.checked) setQuizDifficulty({value: e.target.value});
   }
 
@@ -50,16 +49,24 @@ const App = () => {
   }
 
   const startQuiz = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    setErrorMessage("");
     setShowStartMenu(false);
     setLoading(true);
-    setGameOver(false);
 
     const newQuestions = await fetchQuizQuestions(
       number,
       quizDifficulty.value,
       selectedCategory.value
     );
-    console.log("New Questions, " + newQuestions);
+    
+    if (newQuestions.length === 0) {
+      setErrorMessage("An error has occured! Check how many questions were requested again, or try another category/difficulty");
+      setLoading(false);
+      setShowStartMenu(true);
+      return;
+    }
+
+    setGameOver(false);
     setQuestions(newQuestions);
     setScore(0);
     setUserAnswers([]);
@@ -120,6 +127,7 @@ const App = () => {
       selectDifficulty={selectDifficulty}
       selectNumberCallback={selectNumber}
       startQuizCallback={startQuiz}
+      errorMessage={errorMessage}
       />)}
       {loading && <p>Loading Questions...</p>}
       {!loading && !gameOver && !showStartMenu && (<QuestionCard

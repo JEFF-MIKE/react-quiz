@@ -13,6 +13,7 @@ type Props = {
   selectDifficulty: (e: React.ChangeEvent<HTMLInputElement>) => void;
   selectNumberCallback: (e: React.ChangeEvent<HTMLInputElement>) => void;
   startQuizCallback: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  errorMessage: string;
 }
 
 const StartCard: React.FC<Props> = ({
@@ -23,7 +24,8 @@ const StartCard: React.FC<Props> = ({
   selectCategoryCallback,
   selectDifficulty,
   selectNumberCallback,
-  startQuizCallback
+  startQuizCallback,
+  errorMessage
 }) => {
   
   const [categoryDetails, setCategoryDetails] = useState<CategoryDetails | any>({});
@@ -107,17 +109,20 @@ const StartCard: React.FC<Props> = ({
         <input type="radio" name="difficulty" value="easy" onChange={selectDifficulty} checked={selectedDifficulty === 'easy'}/>Easy
       </label>
       <label>
-        <input type="radio" name="difficulty" value="normal" onChange={selectDifficulty} checked={selectedDifficulty === 'normal'}/>Normal
+        <input type="radio" name="difficulty" value="medium" onChange={selectDifficulty} checked={selectedDifficulty === 'medium'}/>Medium
       </label>
       <label>
         <input type="radio" name="difficulty" value="hard" onChange={selectDifficulty} checked={selectedDifficulty === 'hard'}/>Hard
       </label>
-    </div>
-    <label htmlFor="question-quantity" className="question-quantity-label">Amount of questions (10-50):</label>
-    <input type="number" id="question-quantity" name="question-quantity" min="10" max="50" value={number} onChange={selectNumberCallback}/>
-    <button className="start" onClick={startQuizCallback}>
-        Start
-    </button>
+      </div>
+      <label htmlFor="question-quantity" className="question-quantity-label">Amount of questions (1-50):</label>
+      <input type="number" id="question-quantity" name="question-quantity" min="10" max="50" value={number} onChange={selectNumberCallback}/>
+      <button className="start" onClick={startQuizCallback}>
+          Start
+      </button>
+      <div className="error-message">
+        { errorMessage !== "" ? errorMessage : ""}
+      </div>
     </div>
   </StartMenuWrapper>
 );}
