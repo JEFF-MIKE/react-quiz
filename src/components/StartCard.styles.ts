@@ -111,7 +111,8 @@ export const StartMenuWrapper = styled.div`
     background: ${colors.button_secondary_color};
   }
 
-  @media screen and (max-height: 767px) {
+  @media screen and (max-height: 767px), (max-width: 500px)
+  {
     min-height: 300px;
 
     .inner-div {

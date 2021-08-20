@@ -79,13 +79,18 @@ export const Wrapper = styled.main`
   }
 
   .next, .finish {
-    background: linear-gradient(180deg, #fff, #ffcc91);
-    border: 2px solid #d38558;
-    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    background: #cfe0e3;
+    border: none;
     height: 40px;
     margin: 20px 0;
     padding: 0 40px;
+    width: 100%;
+    cursor: pointer;
+  }
+
+  .next:hover, .finish:hover {
+    transition: opacity 0.4s;
+    opacity: 0.6;
   }
 
   @media screen and (max-height: 500px){

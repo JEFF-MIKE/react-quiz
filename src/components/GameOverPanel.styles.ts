@@ -21,11 +21,22 @@ border: 5px solid black;
 }
 
 p {
+  font-size: 5rem;
+  text-align: center;
 }
 
 button {
-
+  width: 100%;
+  height: 40px;
+  background: #cfe0e3;
+  cursor: pointer;
 }
+
+button:hover {
+  transition: opacity 0.4s;
+  opacity: 0.6;
+}
+
   background: #a6494f;
   color: #FFFFFF;
 `

@@ -48,10 +48,6 @@ export const BottomButtonWrapper = styled.div`
 // #666362 = ash black.
 export const ButtonWrapper = styled.div<ButtonWrapperProps>`
 
-  button:hover {
-    background:
-  }
-
   button {
     transition: all 0.5s ease;
     cursor: pointer;
